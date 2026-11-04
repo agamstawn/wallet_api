@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_04_041128) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_04_041225) do
   create_table "stocks", force: :cascade do |t|
     t.string "name", null: false
     t.string "symbol", null: false
@@ -32,5 +32,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_04_041128) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  create_table "wallets", force: :cascade do |t|
+    t.string "owner_type", null: false
+    t.integer "owner_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_type", "owner_id"], name: "index_wallets_on_owner_type_and_owner_id", unique: true
   end
 end
