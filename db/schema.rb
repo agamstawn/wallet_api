@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_04_041004) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_04_041128) do
+  create_table "stocks", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "symbol", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["symbol"], name: "index_stocks_on_symbol", unique: true
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
