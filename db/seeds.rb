@@ -1,9 +1,9 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+alice = User.find_or_create_by!(email: "alice@example.com") { |u| u.name = "Alice"; u.password = "password123" }
+bob   = User.find_or_create_by!(email: "bob@example.com")   { |u| u.name = "Bob";   u.password = "password123" }
+team  = Team.find_or_create_by!(name: "Engineering")
+stock = Stock.find_or_create_by!(symbol: "RELIANCE") { |s| s.name = "Reliance Industries" }
+
+alice.wallet.deposit!(1000) if alice.wallet.balance.zero?
+
+puts "Alice wallet=#{alice.wallet.id} Bob wallet=#{bob.wallet.id} " \
+     "Team wallet=#{team.wallet.id} Stock wallet=#{stock.wallet.id}"
